@@ -8,18 +8,23 @@
     "npm": "5.0.3"
   },
   "dependencies": {
+    "concurrently": "^5.1.0",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.10",
     "nodemon": "^2.0.3",
     "passport": "^0.4.1",
     "passport-google": "^0.3.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "stripe": "^8.46.0"
   },
   "devDependencies": {},
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon app"
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC"
