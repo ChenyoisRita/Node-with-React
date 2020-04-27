@@ -7,15 +7,25 @@ import SurveyField from './SurveyField';
 import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
 
+
+
 class SurveyForm extends Component {
     renderFields() {
         return _.map(formFields, ({label, name}) => {
+            const CustomLabel = () => {
+                var labelStyle = {
+                    color: 'black',
+                    fontSize: 15
+                };
+               return <label style={labelStyle}>{label} </label>
+            }
+
             return (
                 <Field 
                     key={name} 
                     component={SurveyField} 
                     type="text" 
-                    label={label} 
+                    label={<CustomLabel/>} 
                     name={name} 
                 />
             );
