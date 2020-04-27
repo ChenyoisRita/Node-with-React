@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise;
 const options = {
     useUnifiedTopology: true,
     useNewUrlParser: true
-    };Su
+    };
    mongoose.connect(keys.mongoURI, options).then(()=>{
        console.log("Connected");
    }).catch((err)=>{

@@ -12,7 +12,8 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
     app.get('/api/surveys', requireLogin, async (req, res) => {
-        const surveys = await Survey.find({ _user: req.user.id });
+        const surveys = await Survey.find({ _user: req.user.id })
+            .select({recipients: false});
 
         res.send(surveys);
     });
@@ -33,7 +34,7 @@ module.exports = app => {
         })
          .compact()
          .uniqBy('email', 'surveyId')
-        .each(({ surveyId, email, choice })=> {
+         .each(({ surveyId, email, choice })=> {
             Survey.updateOne(
                 {
                   _id: surveyId,
